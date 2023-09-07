@@ -1,8 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import todoReducer from '../features/taskManager/TaskSlice'
 
-export const store = configureStore({
-  reducer: {
-    roster: todoReducer,
-  },
-});
+const rootReducer =  {
+  todo: todoReducer
+}
+
+const store = configureStore({
+  reducer: rootReducer
+})
+
+export default store
