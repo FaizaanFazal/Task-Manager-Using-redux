@@ -37,3 +37,13 @@
     transform: translateY(0px);
   }
 }
+
+.pop{
+  z-index: 10;
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: rgba(23, 23, 23, 0.5);
+}
