@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {create,deleteitem,updateitem} from './TaskSlice'
-
 import '../../App.css';
+
 
 export function Task(){
     const[title,setTitle]=useState("");
@@ -24,6 +24,8 @@ export function Task(){
            
         }
         dispatch(create(newTodo)) //create
+        setTitle("")
+        setDiscription("")
     }
     const onClickupdatehandler=(e)=>{
         e.preventDefault();
@@ -58,7 +60,7 @@ export function Task(){
     }
 
     return(
-        <div className='App'>
+        <div class='container-lg pt-5 text-center'>
         {show? <div className='pop'>
             <div>
                 <input type='text' value={title} onChange={(e)=>setTitle(e.target.value)} />
@@ -68,22 +70,52 @@ export function Task(){
             </div>
         </div>:null}
         
-            <div>
-                <input type='text' value={title} onChange={(e)=>setTitle(e.target.value)} />
-                <input type='text' value={discription} onChange={handleInputdisc} />
-                <button className='button' onClick={onClickHandler} >Add</button>
+            <div className='cutombox1'>
+            <div class="todo">
+                <span class="underlined">Todo</span>
             </div>
-            <div className='container'>
-                <h1>Todo</h1>
+                <div className='form-row'>
+                    <div className='col-sm-5 mt-1'>
+                        <input className='bg-dblue rounded-pill form-control' id='title' placeholder='Title...' type='text' value={title} onChange={(e)=>setTitle(e.target.value)} />
+                    </div>
+                    <div className='col-sm-5 mt-1'>
+                        <input className='bg-dblue rounded-pill form-control' id='discription' placeholder='Discription...' type='text' value={discription} onChange={handleInputdisc} />
+                    </div> 
+                    <div className='col-sm-2 mt-1'>
+                         <button className='btn rounded-pill btnadd' onClick={onClickHandler} >Add</button>
+                    </div>  
+               
+                </div>
+
+            <div className='mt-3'>
+               
                 {todolist.length>0 ? todolist.map(todolist=>(
+                    
                     <div key={todolist.id}>
-                    {todolist.title}:{todolist.discription}:{todolist.compeleted ? "True" : "False" }
-                    <button id={todolist.id} className='edit' onClick={handleedit}>edit</button>
-                    <button id={todolist.id} className='button' onClick={handleDelete}>delete</button>
+                    <hr className='divider'/>
+
+                    <h5 className='text-left'>
+                    <span className='text-left'>{todolist.title} - </span> 
+                    <span>{todolist.compeleted ? "True" : "False" }</span>
+                    </h5>
+                    
+                    <div className='row mx-2'>
+                    <div className='text-left col-sm-10'> {todolist.discription}</div>
+                    <div className='col-sm-2 d-flex justify-content-between'>
+                    <button id={todolist.id} className='actionbtn' onClick={handleedit}><i className="bi bi-pencil-square"></i> </button>
+                    <button id={todolist.id} className='actionbtn' onClick={handleDelete}><i class="bi bi-trash"></i></button>
+                    </div>
+                   
+                    </div>
+                    
+
                     </div>
                    
                 )):null}
             </div>
+
+            </div>
+           
         </div>
        
     )

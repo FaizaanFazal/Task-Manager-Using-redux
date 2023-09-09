@@ -1,41 +1,85 @@
-.App {
-  text-align: center;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  scroll-behavior: smooth;
+  color-scheme: dark;
+  
+}
+body{
+  background: rgb(16, 12, 46);
+  color: rgb(243, 243, 243);
+  font-size: 14px;
+  font-weight: 600;
+  
+}
+.cutombox1{
+  background-color:transparent;
+  color:rgb(236, 236, 236);
+  padding: 10px;
+  border-radius: 10px;
+}
+.bg-dblue{
+  background-color: rgb(16, 12, 46);
+  border-bottom: 1px solid rgb(255, 255, 255);
+  color: white;
+}
+.bg-dblue:focus{
+  background-color: rgb(16, 12, 46);
+  border-bottom: 3px solid rgb(249, 249, 249);
+  color: white;
+}
+.btnadd{
+  background-color: rgb(16, 12, 46);
+  padding: 5px 20px 5px 20px;
+  color: white;
+  border: 1px solid white;
+}
+.btnadd:hover{
+ color: rgb(16, 12, 46);
+ background-color: rgb(255, 255, 255);
+ border: 1px solid rgb(15, 15, 75);
+}
+.divider{
+  border-bottom: 1px solid white;
+}
+.indent3{
+  text-indent: 40px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.underlined {
+  position: relative;
+  margin-right: 1rem;
+}
+.underlined:after {
+  content: "";
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  height: 20px;
+  width: 100%;
+  border: solid 2px rgb(16, 12, 46);;
+  border-color: rgb(16, 12, 46) transparent transparent transparent;
+  border-radius: 50%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-float infinite 3s ease-in-out;
-  }
+.todo{
+  font-size: 30px;
+  margin-bottom: 20px;
+ 
 }
-
-.App-header {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.todo span{
+  font-family: "Comic Sans MS", cursive, sans-serif;
 }
-
-.App-link {
-  color: rgb(112, 76, 182);
-}
-
-@keyframes App-logo-float {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(10px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
+.black-gradient {
+  background: #000000; /* fallback for old browsers */
+  color: rgb(213, 235, 248);
+  background: -webkit-linear-gradient(to right,#434343,#000000); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right,#434343,#000000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .pop{
@@ -46,4 +90,13 @@
   margin-left: auto;
   margin-right: auto;
   background-color: rgba(23, 23, 23, 0.5);
+}
+
+.actionbtn{
+  background-color: transparent;
+  border: 0;
+  padding: 3px;
+  font-size: 15px;
+  margin-left: auto;
+  margin-right: auto;
 }
