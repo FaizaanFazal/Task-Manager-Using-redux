@@ -15,6 +15,9 @@ const taskSlice= createSlice({
         },
         updateitem(state, action) {        
             state.list = state.list.map(todo => todo.id === action.payload.id ? { ...todo,  title:action.payload.title,discription:action.payload.discription } : todo)
+        },
+        togglestatus(state, action) {        
+            state.list = state.list.map(todo => todo.id === action.payload.id ? { ...todo,  compeleted: !action.payload.compeleted} : todo)
         }
 
         // create:{
@@ -78,5 +81,5 @@ const taskSlice= createSlice({
 
 });
 const {actions,reducer}=taskSlice
-export const { create , deleteitem , updateitem , addTodo }=actions
+export const { create , deleteitem , updateitem , addTodo , togglestatus  }=actions
 export default reducer

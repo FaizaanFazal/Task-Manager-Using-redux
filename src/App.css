@@ -45,7 +45,10 @@ body{
  border: 1px solid rgb(15, 15, 75);
 }
 .divider{
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid rgba(192, 192, 192, 0.194);
+  font-size: 0;
+
+  border-top: 0;
 }
 .indent3{
   text-indent: 40px;
@@ -58,12 +61,12 @@ body{
 .underlined:after {
   content: "";
   position: absolute;
-  bottom: -12px;
+  bottom: -15px;
   left: 0;
   height: 20px;
   width: 100%;
-  border: solid 2px rgb(16, 12, 46);;
-  border-color: rgb(16, 12, 46) transparent transparent transparent;
+  border: solid 2px rgb(255, 255, 255);;
+  border-color: rgb(255, 255, 255) transparent transparent transparent;
   border-radius: 50%;
 }
 
@@ -85,13 +88,29 @@ body{
 .pop{
   z-index: 10;
   position: absolute;
-  width: 500px;
-  height: 500px;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(55, 0, 63, 0.891);
+}
+.popbox{
+  max-width:500px;
   margin-left: auto;
   margin-right: auto;
-  background-color: rgba(23, 23, 23, 0.5);
-}
+  margin-top: 10%;
+  background-color: rgb(16, 12, 46);
 
+}
+.closebtn{
+  padding: 3px;
+  background-color: transparent;
+  color: red;
+  border: 0;
+  font-weight: 700;
+  font-size: 20px;
+  margin-left: auto;
+}
 .actionbtn{
   background-color: transparent;
   border: 0;
@@ -99,4 +118,65 @@ body{
   font-size: 15px;
   margin-left: auto;
   margin-right: auto;
+}
+
+/*toggle button*/
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 24px;
+}
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: red;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 4px;
+  bottom: 4px;
+  border: 1px solid rgb(255, 255, 255);
+  background-color: rgb(16, 12, 46);
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
 }
