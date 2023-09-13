@@ -10,6 +10,8 @@ export function Task(){
     const[discription,setDiscription]=useState("");
     const[show,setShow]=useState(false)
     const[idtoUpdate,setIdtoUpdate]=useState("")
+    let duplciate;
+    let check;
 
 
 
@@ -18,28 +20,52 @@ export function Task(){
 
     const onClickHandler=(e)=>{
         e.preventDefault();
-        const newTodo = {
-            id: (Math.floor(Math.random() * 888888) + 100000).toString(),
-            title: title,
-            discription:discription,
-            compeleted: false,
-           
+        check=checknulls();
+        if(!check){
+            const newTodo = {
+                id: Math.floor(Math.random() * 888888) + 100000,
+                title: title,
+                discription:discription,
+                compeleted: false,     
+            }
+            duplciate=checkduplicate(newTodo);
+            if(duplciate!==true){
+            dispatch(create(newTodo)) //create
+            setTitle("")
+            setDiscription("")
+            }
+            else{alert("Task already exists")}
         }
-        dispatch(create(newTodo)) //create
-        setTitle("")
-        setDiscription("")
+        else{alert("some fields empty")}
+       
     }
-    const onClickupdatehandler=(e)=>{
-        e.preventDefault();
-        const updatetodo = {
-            id: idtoUpdate,
-            title: title,
-            discription:discription,
-           
-           
+    const checknulls=()=>{
+        if(title.length>0 && discription.length>0){
+            return false
         }
-        dispatch(updateitem(updatetodo)); //update
-        setShow(show=>!show)
+        else{return true}
+    }
+    const checkduplicate=(newTodo)=>{    //title duplciation? validation
+        let f=null;
+        f=todolist.find(item=> item.title === newTodo.title)
+        if(f){return true;}
+        else{return false}
+    }
+    const onClickupdatehandler=(e)=>{   
+        e.preventDefault();
+        if(!checknulls){
+            const updatetodo = {
+                id: idtoUpdate,
+                title: title,
+                discription:discription,  
+            }
+            duplciate=checkduplicate(updatetodo);
+            if(duplciate!==true){
+                dispatch(updateitem(updatetodo)); //update
+                setShow(show=>!show)
+            }
+            else{alert("task already exists")}
+        } 
     }
 
     const handleInputdisc =(e)=>{
@@ -47,6 +73,7 @@ export function Task(){
     }
     const handleDelete=(e)=>{
         e.preventDefault();
+        console.log(e.target.id)
         dispatch(deleteitem(e.target.id))  //delete
     }
 
@@ -54,7 +81,6 @@ export function Task(){
     let status;
     let compel;
     const handletoggle=(id)=>{
-  
         console.log(id)
         status=todolist.filter((item) => { return item.id === id});
         compel=status[0].compeleted           //toggle

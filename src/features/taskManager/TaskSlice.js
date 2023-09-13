@@ -13,8 +13,12 @@ const taskSlice= createSlice({
             state.list.push(action.payload)
         },
         deleteitem(state,action){
-            const index = state.list.findIndex((arrow) =>arrow.id === action.payload.id);
-            state.list.splice(index-1, 1);
+            // const index = state.list.indexOf((arrow) =>arrow.id === action.payload.id);
+            // state.list.splice(index-1, 1);
+            let n=parseInt(action.payload)
+            state.list = state.list.filter((arrow) => arrow.id != n);
+            
+          
         },
         updateitem(state, action) {        
             state.list = state.list.map(todo => todo.id === action.payload.id ? { ...todo,  title:action.payload.title,discription:action.payload.discription } : todo)
