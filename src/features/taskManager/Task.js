@@ -87,8 +87,6 @@ export function Task(){
             <div>Make Changes</div>
                 <div className='form-row'>
                     <div className='col-sm-12 mt-1'>
-                    <input className='display-none'  data-testid="eidInput" id='id' placeholder='Id' type='text' value={idtoUpdate} onChange={(e)=>setIdtoUpdate(e.target.value)} />
-                  
                         <input className='bg-dblue rounded-pill form-control' data-testid="etitleInput" id='title' placeholder='Title...' type='text' value={title} onChange={(e)=>setTitle(e.target.value)} />
                     </div>
                     <div className='col-sm-12 mt-1'>
