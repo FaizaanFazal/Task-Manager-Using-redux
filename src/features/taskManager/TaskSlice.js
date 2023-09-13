@@ -4,7 +4,10 @@ let nId=1;
 
 const taskSlice= createSlice({
     name:'todo',
-    initialState:{ list: [] },
+    initialState:{ list: [
+        // {id:"1",title:"Test1",discription:"tarka how are yu",compeleted:false } //for testing need id
+
+    ] },
     reducers:{
         create(state, action) {
             state.list.push(action.payload)

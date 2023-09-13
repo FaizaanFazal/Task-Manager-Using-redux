@@ -87,13 +87,15 @@ export function Task(){
             <div>Make Changes</div>
                 <div className='form-row'>
                     <div className='col-sm-12 mt-1'>
-                        <input className='bg-dblue rounded-pill form-control' id='title' placeholder='Title...' type='text' value={title} onChange={(e)=>setTitle(e.target.value)} />
+                    <input className='display-none'  data-testid="eidInput" id='id' placeholder='Id' type='text' value={idtoUpdate} onChange={(e)=>setIdtoUpdate(e.target.value)} />
+                  
+                        <input className='bg-dblue rounded-pill form-control' data-testid="etitleInput" id='title' placeholder='Title...' type='text' value={title} onChange={(e)=>setTitle(e.target.value)} />
                     </div>
                     <div className='col-sm-12 mt-1'>
-                        <input className='bg-dblue rounded-pill form-control' id='discription' placeholder='Discription...' type='text' value={discription} onChange={handleInputdisc} />
+                        <input className='bg-dblue rounded-pill form-control' data-testid="ediscInput" id='discription' placeholder='Discription...' type='text' value={discription} onChange={handleInputdisc} />
                     </div> 
                     <div className='col-sm-12 mt-1'>
-                         <button className='btn rounded-pill btnadd' onClick={onClickupdatehandler} >Update</button>
+                         <button className='btn rounded-pill btnadd' data-testid="ebtnInput" onClick={onClickupdatehandler} >Update</button>
                     </div>  
                 </div>
                 
@@ -101,18 +103,18 @@ export function Task(){
                 </div>:null}
         
             <div className='cutombox1'>
-            <div class="todo">
-                <span class="underlined">Todo</span>
+            <div className="todo">
+                <span className="underlined">Todo</span>
             </div>
                 <div className='form-row'>
                     <div className='col-sm-5 mt-1'>
-                        <input className='bg-dblue rounded-pill form-control' id='title' placeholder='Title...' type='text' value={title} onChange={(e)=>setTitle(e.target.value)} />
+                        <input className='bg-dblue rounded-pill form-control' data-testid="titleInput" id='title' placeholder='Title...' type='text' value={title} onChange={(e)=>setTitle(e.target.value)} />
                     </div>
                     <div className='col-sm-5 mt-1'>
-                        <input className='bg-dblue rounded-pill form-control' id='discription' placeholder='Discription...' type='text' value={discription} onChange={handleInputdisc} />
+                        <input className='bg-dblue rounded-pill form-control' data-testid="discInput" id='discription' placeholder='Discription...' type='text' value={discription} onChange={handleInputdisc} />
                     </div> 
                     <div className='col-sm-2 mt-1'>
-                         <button className='btn rounded-pill btnadd' onClick={onClickHandler} >Add</button>
+                         <button className='btn rounded-pill btnadd' data-testid='inputbtn' onClick={onClickHandler} >Add</button>
                     </div>  
                
                 </div>
@@ -126,11 +128,12 @@ export function Task(){
                     <hr className='divider'/>
 
                     <h5 className='text-left'>
-                    <span className='text-left'>{todolist.title} </span> 
+                    <span className='text-left' data-testid="titleOutput">{todolist.title} </span> 
                         <span>
                         <label class="switch">
                         <input id={todolist.id} 
                          type="checkbox"
+                         data-testid="outStatus"
                          checked={todolist.compeleted} 
                          onChange={()=>handletoggle(todolist.id)}
                         />
@@ -143,9 +146,9 @@ export function Task(){
                     </h5>
                     
                     <div className='row mx-2 align-content-between'>
-                    <div className='text-left col-sm-10'> {todolist.discription}</div>
+                    <div className='text-left col-sm-10' data-testid="discOutput" >{todolist.discription}</div>
                     <div className='col-sm-2 d-flex justify-content-between'>
-                    <button  id={todolist.id} className='actionbtn bi bi-brush' onClick={handleedit} ></button>
+                    <button  id={todolist.id} data-testid="btnedit" className='actionbtn bi bi-brush' onClick={handleedit} ></button>
                     <button  id={todolist.id} className='actionbtn bi bi-trash' onClick={handleDelete} ></button>
                     </div>
                    

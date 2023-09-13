@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`check task creation and displaying : Test2  1`] = `
+Array [
+  <span
+    class="text-left"
+    data-testid="titleOutput"
+  >
+    Test2
+     
+  </span>,
+]
+`;
+
+exports[`check task creation and displaying : tarka how are yu 1`] = `undefined`;
