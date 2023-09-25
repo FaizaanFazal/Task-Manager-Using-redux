@@ -9,6 +9,7 @@ export function Task(){
     const[discription,setDiscription]=useState("");
     const[show,setShow]=useState(false)
     const[idtoUpdate,setIdtoUpdate]=useState("")
+    const[counter,setCounter]=useState(0)
     let duplciate;
     let check;
 
@@ -21,8 +22,9 @@ export function Task(){
         e.preventDefault();
         check=checknulls();
         if(!check){
+            setCounter((counter)=>counter+1)
             const newTodo = {
-                id: Math.floor(Math.random() * 888888) + 100000,
+                id: counter,
                 title: title,
                 discription:discription,
                 compeleted: false,     
@@ -40,9 +42,12 @@ export function Task(){
     }
     const checknulls=()=>{
         if(title.length>0 && discription.length>0){
+         
             return false
         }
-        else{return true}
+        else{
+ 
+            return true}
     }
     const checkduplicate=(newTodo)=>{    //title duplciation? validation
         let f=null;
@@ -50,39 +55,41 @@ export function Task(){
         if(f){return true;}
         else{return false}
     }
-    const onClickupdatehandler=(e)=>{   
-        e.preventDefault();
-        if(!checknulls){
+    const onClickupdatehandler=async()=>{
+         
+        let c= checknulls()
+        if(c===false){
             const updatetodo = {
-                id: idtoUpdate,
+                id: Number(idtoUpdate),
                 title: title,
                 discription:discription,  
             }
+           
             duplciate=checkduplicate(updatetodo);
-            if(duplciate!==true){
+            if(duplciate===false){
                 dispatch(updateitem(updatetodo)); //update
                 setShow(show=>!show)
             }
             else{alert("task already exists")}
         } 
+     
     }
 
     const handleInputdisc =(e)=>{
         setDiscription(e.target.value)
     }
-    const handleDelete=(e)=>{
-        e.preventDefault();
-        console.log(e.target.id)
-        dispatch(deleteitem(e.target.id))  //delete
+
+    const handleDelete=(e)=>{                       //delete
+        dispatch(deleteitem(e.target.id)) 
     }
 
 
     let status;
     let compel;
     const handletoggle=(id)=>{
-        console.log(id)
+     
         status=todolist.filter((item) => { return item.id === id});
-        compel=status[0].compeleted           //toggle
+        compel=status[0].compeleted                 //toggle
         const toggletodo = {
             id: id,
             compeleted:compel  
@@ -94,13 +101,12 @@ export function Task(){
     let res;
     const handleedit=(e)=>{
         e.preventDefault();
-        console.log("id "+e.target.id)
-        res=todolist.filter((item) => { return item.id === e.target.id});
-        console.log(res) //print
+        res=todolist.filter((item) => { return item.id == e.target.id});
         setTitle(res[0].title)
-        setDiscription(res[0].discription) 
+        setDiscription(res[0].discription)  
+        setShow(show=> !show)               //display edit box    
         setIdtoUpdate(e.target.id)
-        setShow(show=> !show)     //display edit box     
+      
     }
 
     return(
@@ -118,7 +124,7 @@ export function Task(){
                         <input className='bg-dblue rounded-pill form-control' data-testid="ediscInput" id='discription' placeholder='Discription...' type='text' value={discription} onChange={handleInputdisc} />
                     </div> 
                     <div className='col-sm-12 mt-1'>
-                         <button className='btn rounded-pill btnadd' data-testid="ebtnInput" onClick={onClickupdatehandler} >Update</button>
+                         <button className='btn rounded-pill btnadd text-white' data-testid="ebtnInput" onClick={onClickupdatehandler} >Update</button>
                     </div>  
                 </div>
                 
@@ -137,42 +143,39 @@ export function Task(){
                         <input className='bg-dblue rounded-pill form-control' data-testid="discInput" id='discription' placeholder='Discription...' type='text' value={discription} onChange={handleInputdisc} />
                     </div> 
                     <div className='col-sm-2 mt-1'>
-                         <button className='btn rounded-pill btnadd' data-testid='inputbtn' onClick={onClickHandler} >Add</button>
+                         <button className='btn rounded-pill btnadd text-white' data-testid='inputbtn' onClick={onClickHandler} >Add</button>
                     </div>  
                
                 </div>
 
-            <div className='mt-3'>
+            <div className='mt-3' data-testid={"checkdisplay"}>
                
-                {todolist.length>0 ? todolist.map(todolist=>(
+                {todolist.length>0 ? todolist.map((todolist,index)=>(
                     
                     <div key={todolist.id} data-id={todolist.id}>
                    
                     <hr className='divider'/>
 
                     <h5 className='text-left'>
-                    <span className='text-left' data-testid="titleOutput">{todolist.title} </span> 
+                    <span className='text-left' data-testid={"titleOutput"+index}>{todolist.title} </span> 
                         <span>
-                        <label class="switch">
+                        <label className="switch">
                         <input id={todolist.id} 
                          type="checkbox"
-                         data-testid="outStatus"
+                         data-testid={"outStatus"+index}
                          checked={todolist.compeleted} 
                          onChange={()=>handletoggle(todolist.id)}
                         />
-                        <span class="slider round"></span>
+                        <span className="slider round"></span>
                         </label>
                         </span> 
-                      
-                        
-                    
                     </h5>
                     
                     <div className='row mx-2 align-content-between'>
-                    <div className='text-left col-sm-10' data-testid="discOutput" >{todolist.discription}</div>
+                    <div className='text-left col-sm-10' data-testid={"discOutput"+index} >{todolist.discription}</div>
                     <div className='col-sm-2 d-flex justify-content-between'>
-                    <button  id={todolist.id} data-testid="btnedit" className='actionbtn bi bi-brush' onClick={handleedit} ></button>
-                    <button  id={todolist.id} className='actionbtn bi bi-trash' onClick={handleDelete} ></button>
+                    <button  id={todolist.id} data-testid={"btnedit"+index} className='actionbtn bi bi-brush' onClick={handleedit} ></button>
+                    <button  id={todolist.id} data-testid={"btndelete"+index} className='actionbtn bi bi-trash' onClick={handleDelete} ></button>
                     </div>
                    
                     </div>
