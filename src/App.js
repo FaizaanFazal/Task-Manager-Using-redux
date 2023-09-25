@@ -1,6 +1,6 @@
 import React from 'react';
 import { Task } from './features/taskManager/Task';
-import './App.css';
+// import './App.css';
 
 function App() {
   return (

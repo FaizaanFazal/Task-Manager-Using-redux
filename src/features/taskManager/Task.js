@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
-import 'bootstrap-icons/font/bootstrap-icons.css';
+// import 'bootstrap-icons/font/bootstrap-icons.css';
+// import '../../App.css';
 import {create,deleteitem,updateitem,togglestatus} from './TaskSlice'
-import '../../App.css';
 
 
 export function Task(){

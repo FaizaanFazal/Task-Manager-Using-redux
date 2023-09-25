@@ -88,5 +88,5 @@ const taskSlice= createSlice({
 
 });
 const {actions,reducer}=taskSlice
-export const { create , deleteitem , updateitem , addTodo , togglestatus  }=actions
+export const { create , deleteitem , updateitem  , togglestatus  }=actions
 export default reducer
