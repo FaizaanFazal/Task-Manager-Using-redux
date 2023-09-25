@@ -3,12 +3,13 @@
  */
 import React from 'react';
 import App from '../App';
-import  render  from './todotesting';
+import { renderWithProviders }  from './todotesting';
+
+import { screen } from '@testing-library/react';
 
 test('renders todo heading', () => { 
-  const {getByText}=render(<App/>)
-  const textElement=getByText('Todo');
-  expect(textElement).toBeInTheDocument();
+  renderWithProviders(<App/>);
+  expect(screen.getByText('Todo')).toBeInTheDocument();
  })
 
 //  //ceating task and displaying it

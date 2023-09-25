@@ -1,46 +1,23 @@
-// import React from 'react';
-// import { render } from '@testing-library/react';
-
-// export function renderWithProviders(
-    //     ui,
-    //     {...renderOptions}={} //options null
-    // ){
-        //     function Wrapper({children}){
-            //         return(<Provider store={store}>{children}</Provider>)
-            //     }
-            //     return {store, ...render(ui, {wrapper: Wrapper})};
-            // }
-
 import React from 'react'
-import {render} from '@testing-library/react'
-import { Provider } from 'react-redux';
-import  store  from '../app/store';// donot destructure if exported as default
-
-const AllTheProviders = ({children}) => {
-  return (
-    <Provider store={store}>
-        {children}
-    </Provider>
-  )
-}
-
-const rtl = require('@testing-library/react')
-const customRender = (ui, options) =>
-  rtl.render(<Provider store={store}>
-    {ui}
-</Provider>,
- {
-    myDefaultOption: 'something',
-    ...options,
-})
-
-// re-export everything
+import { render } from '@testing-library/react'
+import { Provider } from 'react-redux'
+import  reduxStore  from '../app/store';
+import '@testing-library/jest-dom'
 export * from '@testing-library/react'
 
+export function renderWithProviders(
+  ui,
+  {
+    preloadedState = {},
+    // Automatically create a store instance if no store was passed in
+    store = reduxStore,
+    ...renderOptions
+  } = {}
+) {
+  function Wrapper({ children }) {
+    return <Provider store={store}>{children}</Provider>
+  }
 
-
-
-export default{
-  ...rtl,
-  render: customRender,
+  // Return an object with the store and all of RTL's query functions
+  return { store, ...render(ui, { wrapper: Wrapper, ...renderOptions }) }
 }

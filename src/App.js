@@ -1,10 +1,10 @@
 import React from 'react';
 import { Task } from './features/taskManager/Task';
-// import './App.css';
+import styles from './App.module.css';
 
 function App() {
   return (
-    <div className="App">
+    <div className={styles['App']}>
       <Task/>
     </div>
   );

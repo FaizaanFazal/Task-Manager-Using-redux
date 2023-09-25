@@ -15,6 +15,7 @@
     "babel-preset-jest": "^29.6.3",
     "bootstrap": "^4.6.0",
     "bootstrap-icons": "^1.10.5",
+    "jest-css-modules-transform": "^4.4.2",
     "jest-transform-stub": "^2.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

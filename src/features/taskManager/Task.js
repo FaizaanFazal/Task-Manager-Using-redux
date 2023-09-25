@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
-// import 'bootstrap-icons/font/bootstrap-icons.css';
 // import '../../App.css';
 import {create,deleteitem,updateitem,togglestatus} from './TaskSlice'
 
@@ -105,7 +104,7 @@ export function Task(){
     }
 
     return(
-        <div class='container-lg pt-5 text-center'>
+        <div className='container-lg pt-5 text-center'>
         {show? <div className='pop'>
 
             <div className='popbox p-3'>
