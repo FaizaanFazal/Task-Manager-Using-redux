@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 // import '../../App.css';
 import {create,deleteitem,updateitem,togglestatus} from './TaskSlice'
+import { Users } from './User';
 
 
 export function Task(){
@@ -184,6 +185,9 @@ export function Task(){
                     </div>
                    
                 )):null}
+            </div>
+            <div className='container mt-3' data-testid='users'>
+                <Users/>
             </div>
 
             </div>
