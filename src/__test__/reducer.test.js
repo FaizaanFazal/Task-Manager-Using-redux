@@ -1,3 +1,8 @@
+/**
+ * @jest-environment jsdom
+ */
+
+import { expect } from '@jest/globals';
 import taskSlice,{create , deleteitem , updateitem  , togglestatus} from '../features/taskManager/TaskSlice';
   
   describe('Task reducer', () => {

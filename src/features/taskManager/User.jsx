@@ -2,7 +2,7 @@ import { useState, useEffect} from "react";
 import axios from "axios";
 
 
-export const Users= () => {
+export const User= () => {
   const [users, setUsers] = useState([]);
   const [error, setError] = useState(null);
   const [id, setId] = useState(23);
@@ -19,10 +19,9 @@ export const Users= () => {
   };
 
 
-   function getUsers(){
+  useEffect (() => {
     axios.get("https://jsonplaceholder.typicode.com/users")
     .then((response) => {
-      console.log(response.status)
       const data = response.data;
       const userNames = data.map((user) => user.name);
       setUsers(userNames);
@@ -30,10 +29,6 @@ export const Users= () => {
     .catch((error) => {
       setError("Error fetching users");
     });
-  }
-
-  useEffect (() => {
-    getUsers();
       
   }, []);
 
@@ -43,7 +38,7 @@ export const Users= () => {
       {error && <p>{error}</p>}
           <ul>
           {users.map((user) => (
-          <li key={user}>{user}</li>
+          <li  key={user} role="itemlist"  >{user}</li>
           ))}
           </ul>
           <button onClick={handlePostRequest}>Submit</button>

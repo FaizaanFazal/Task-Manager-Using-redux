@@ -4,15 +4,18 @@
 import React from 'react';
 import App from '../App';
 import { renderWithProviders }  from './todotesting';
-import { screen,fireEvent } from '@testing-library/react';
+import { screen,fireEvent, render } from '@testing-library/react';
 import { expect } from '@jest/globals';
-import { getUsers } from '../features/taskManager/User';
+import { User } from '../features/taskManager/User';
+
+
 
 test('renders  users', async () => { 
-  renderWithProviders(<App/>);
-  const useritem=await screen.findByTestId('users')
+  render(<User/>)
+  const useritem=await screen.findAllByRole('itemlist')
+
  
-  expect(useritem).toBeInTheDocument();
+  expect(useritem).toHaveLength(1);
  })
 
 // test('GetsUsers', async () => { 
